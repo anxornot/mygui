@@ -34,6 +34,12 @@ SOURCE_GROUP("Base" FILES
 
 add_library(${PROJECTNAME} STATIC ${HEADER_FILES} ${SOURCE_FILES})
 
+target_compile_options(${PROJECTNAME}
+	PRIVATE
+		# not useful for demos and tools
+		-Wno-unique-object-duplication
+)
+
 if(MYGUI_RENDERSYSTEM EQUAL 3)
 	target_include_directories(${PROJECTNAME} SYSTEM PUBLIC "${OGRE_INCLUDE_DIRS}")
 	target_link_directories(${PROJECTNAME} PUBLIC "${OGRE_LIBRARY_DIRS}")
